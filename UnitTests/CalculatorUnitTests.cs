@@ -41,6 +41,12 @@ namespace UnitTests
             decimal actualResult = Calculator.CalculatorClass.SumDecimal3(0.1m, 0.1m, 0.1m);
 
             Assert.AreEqual(expectedResult, actualResult);
-        } 
+        }
+
+        [Test]
+        public void Sum3And3()
+        {
+            Assert.AreEqual(6, Calculator.CalculatorClass.SumInt(3, 3));
+        }
     }
 }
