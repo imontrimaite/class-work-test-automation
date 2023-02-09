@@ -17,7 +17,7 @@ namespace UnitTests
                       count++;
                   }
               }
-              Assert.AreEqual(4, count, "Count does not match expected value");
+              Assert.AreEqual(4, count);
          }
     }
 }
