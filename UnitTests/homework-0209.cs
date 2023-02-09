@@ -13,6 +13,6 @@ namespace UnitTests
             int actualResult = 995 % 3;
 
             Assert.AreEqual(expectedResult, actualResult);
-        }
+        }       
     }
 }
