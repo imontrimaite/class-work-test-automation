@@ -1,12 +1,11 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace UnitTests
 {
-    internal class homework_0209
+    internal class CheckRemainder995DividedBy3
     {
         [Test]
-        public void CheckRemainder995DividedBy3()
+        public void CheckRemainder995DividedBy3Method()
         { 
             int expectedResult = 0;
 

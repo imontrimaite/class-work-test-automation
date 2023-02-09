@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace TimeTest
+namespace NowIs13H
 {
     public class NowIs13HTest
     {
