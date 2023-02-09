@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace NowIs13H
+namespace UnitTests
 {
     public class NowIs13HTest
     {

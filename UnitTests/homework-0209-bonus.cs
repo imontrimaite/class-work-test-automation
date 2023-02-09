@@ -6,7 +6,7 @@ namespace UnitTests
     public class EvenNumbersTest
     {
          [Test]
-         public void Test_That_There_Are_Four_Even_Numbers_Between_1_And_10()
+         public void FourEvenNumbersBetween1And10Test()
          {
               int count = 0;
 
@@ -17,7 +17,7 @@ namespace UnitTests
                       count++;
                   }
               }
-              Assert.AreEqual(4, count);
+              Assert.AreEqual(4, count, "Count does not match expected value");
          }
     }
 }

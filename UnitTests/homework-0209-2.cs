@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace TodayIsWednesdayTest
+namespace UnitTests
 {    
-    public class TodayIsWednesdayUnitTest
+    public class TodayIsWednesdayTest
     {
         [Test]
         public void TodayIsWednesdayMethod()

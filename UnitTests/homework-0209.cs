@@ -2,10 +2,10 @@
 
 namespace UnitTests
 {
-    internal class CheckRemainder995DividedBy3
+    internal class Remainder995DividedBy3Test
     {
         [Test]
-        public void CheckRemainder995DividedBy3Method()
+        public void Remainder995DividedBy3Method()
         { 
             int expectedResult = 0;
 
