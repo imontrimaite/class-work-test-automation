@@ -13,5 +13,18 @@ namespace UnitTests
 
             Assert.IsTrue(now >= expectedTime && now < expectedTime.AddMinutes(1));
         }
+
+        //arba
+        [Test]
+        public void CheckIfTimeNowIs300()
+        {
+            string expectedResult = "13:00";
+
+            string actualResult = $"{DateTime.Now.Hour}:{DateTime.Now.Minute}";
+            // arba optimaliau
+            // string actualResultFormatted = DateTime.Now.ToString("HH:mm");
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
