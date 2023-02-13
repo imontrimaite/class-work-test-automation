@@ -1,19 +1,21 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
 
 namespace SeleniumTestsWithoutPOM3
 {
     internal class homework2
     {
+        // nepavykes
         [Test]
         public void TextBoxTest()
         {
             IWebDriver driver = new ChromeDriver();
-
-            driver.Url = "https://demoqa.com/text-box";
+            driver.Manage().Window.Position = new System.Drawing.Point(2000, 1);
             driver.Manage().Window.Maximize();
 
+            driver.Url = "https://demoqa.com/text-box";
 
             string expectedFullName = "Ieva Montrimaite";
             string expectedEmail = "montrimaite.ieva@gmail.com";
@@ -26,16 +28,16 @@ namespace SeleniumTestsWithoutPOM3
             IWebElement inputPermanentAddress = driver.FindElement(By.XPath("//*[@id='permanentAddress']"));
             IWebElement buttonSubmit = driver.FindElement(By.XPath("//*[@id='submit']"));
 
-            IWebElement spanMessageName = driver.FindElement(By.XPath("//*[@id='name']"));
-            IWebElement spanMessageEmail = driver.FindElement(By.XPath("//*[@id='email']"));
-            IWebElement spanMessageCurrentAddress = driver.FindElement(By.XPath("//*[@id='currentAddress']"));
-            IWebElement spanMessagePermanentAddress = driver.FindElement(By.XPath("//*[@id='permanentAddress']"));
-            
             inputFullName.SendKeys(expectedFullName);
             inputEmail.SendKeys(expectedEmail);
             inputCurrentAddress.SendKeys(expectedCurrentAddress);
             inputPermanentAddress.SendKeys(expectedPermanentAddress);
-            buttonSubmit.Click(); //neveikia      
+            buttonSubmit.Click();
+
+            IWebElement spanMessageName = driver.FindElement(By.XPath("//*[@id='name']"));
+            IWebElement spanMessageEmail = driver.FindElement(By.XPath("//*[@id='email']"));
+            IWebElement spanMessageCurrentAddress = driver.FindElement(By.XPath("//*[@id='currentAddress']"));
+            IWebElement spanMessagePermanentAddress = driver.FindElement(By.XPath("//*[@id='permanentAddress']"));
 
             string actualName = spanMessageName.Text;
             string actualEmail = spanMessageEmail.Text;
@@ -50,35 +52,29 @@ namespace SeleniumTestsWithoutPOM3
             driver.Quit();
         }
 
+
         [Test]
-        public void FaultyEmailTest()
+        public void InvalidEmailTest()
         {
             IWebDriver driver = new ChromeDriver();
+            driver.Manage().Window.Position = new System.Drawing.Point(2000, 1);
+            driver.Manage().Window.Maximize();
 
             driver.Url = "https://demoqa.com/text-box";
 
-            string expectedFullName = "Ieva Montrimaite";
-            string expectedEmail = "montrimaite.ievagmail.com";
-            string expectedCurrentAddress = "2436 N 48th St #101, Lincoln, New Hampshire";
-            string expectedPermanentAddress = "8602 SW State Road 200, Ocala, Florida";
-
-            IWebElement inputFullName = driver.FindElement(By.XPath("//*[@id='userName']"));
-            IWebElement inputEmail = driver.FindElement(By.XPath("//*[@id='userEmail']"));
-            IWebElement inputCurrentAddress = driver.FindElement(By.XPath("//*[@id='currentAddress']"));
-            IWebElement inputPermanentAddress = driver.FindElement(By.XPath("//*[@id='permanentAddress']"));
+            IWebElement inputInvalidEmail = driver.FindElement(By.XPath("//*[@id='userEmail']"));
             IWebElement buttonSubmit = driver.FindElement(By.XPath("//*[@id='submit']"));
 
-            IWebElement faultyEmail = driver.FindElement(By.XPath("//input[@class='mr-sm-2 field-error form-control']"));
+            string beforeValue = inputInvalidEmail.GetAttribute("class");
 
-            inputFullName.SendKeys(expectedFullName);
-            inputEmail.SendKeys(expectedEmail);
-            inputCurrentAddress.SendKeys(expectedCurrentAddress);
-            inputPermanentAddress.SendKeys(expectedPermanentAddress);
-            buttonSubmit.Click(); //neveikia
+            inputInvalidEmail.SendKeys("montrimaite.ievagmail.com");
+            buttonSubmit.Click();
 
-            Assert.AreEqual(expectedEmail, faultyEmail);
+            string afterValue = inputInvalidEmail.GetAttribute("class");
+
+            Assert.AreEqual(beforeValue, afterValue);
 
             driver.Quit();
-        }
+        }      
     }
-}
+ }
