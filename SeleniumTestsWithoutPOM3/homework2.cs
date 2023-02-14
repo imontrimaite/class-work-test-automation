@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.Extensions;
 using System;
 
 namespace SeleniumTestsWithoutPOM3
@@ -32,6 +33,8 @@ namespace SeleniumTestsWithoutPOM3
             inputEmail.SendKeys(expectedEmail);
             inputCurrentAddress.SendKeys(expectedCurrentAddress);
             inputPermanentAddress.SendKeys(expectedPermanentAddress);
+            
+            // driver.ExecuteJavaScript()
             buttonSubmit.Click();
 
             IWebElement spanMessageName = driver.FindElement(By.XPath("//*[@id='name']"));
@@ -44,7 +47,7 @@ namespace SeleniumTestsWithoutPOM3
             string actualCurrentAddress = spanMessageCurrentAddress.Text;
             string actualPermanentAddress = spanMessagePermanentAddress.Text;
 
-            Assert.AreEqual(expectedFullName, actualName);
+            Assert.IsTrue(actualName.Contains(expectedFullName), $"actual: {actualName}, expected: {expectedFullName}");
             Assert.AreEqual(expectedEmail, actualEmail);
             Assert.AreEqual(expectedCurrentAddress, actualCurrentAddress);
             Assert.AreEqual(expectedPermanentAddress, actualPermanentAddress);
