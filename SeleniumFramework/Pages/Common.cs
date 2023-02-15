@@ -8,5 +8,9 @@ namespace SeleniumFramework.Pages
 {
     internal class Common
     {
+        internal static void SendKeys(string locator, string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
