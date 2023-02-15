@@ -12,7 +12,6 @@ namespace SeleniumFramework.Pages.SeleniumEasy
         {
             throw new NotImplementedException();
         }
-
         public static string GetSingleInputFieldMessage()
         {
             throw new NotImplementedException();
