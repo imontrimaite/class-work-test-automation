@@ -25,7 +25,7 @@ namespace SeleniumTestsWithoutPOM3
 
             Assert.AreEqual(expectedResult, actualResult);
 
-            driver.Quit();
+            //driver.Quit();
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace SeleniumTestsWithoutPOM3
             clickGetTotal.SendKeys(expectedResult);
             Assert.AreEqual(expectedResult, actualResult);
 
-            driver.Quit();
+            //driver.Quit();
         }
     }
 }
