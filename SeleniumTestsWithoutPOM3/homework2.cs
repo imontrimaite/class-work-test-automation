@@ -8,20 +8,19 @@ namespace SeleniumTestsWithoutPOM3
 {
     internal class homework2
     {
-        // nepavykes
         [Test]
         public void TextBoxTest()
         {
             IWebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Position = new System.Drawing.Point(2000, 1);
+            //driver.Manage().Window.Position = new System.Drawing.Point(2000, 1);
             driver.Manage().Window.Maximize();
 
             driver.Url = "https://demoqa.com/text-box";
 
             string expectedFullName = "Ieva Montrimaite";
             string expectedEmail = "montrimaite.ieva@gmail.com";
-            string expectedCurrentAddress = "2436 N 48th St #101, Lincoln, New Hampshire";
-            string expectedPermanentAddress = "8602 SW State Road 200, Ocala, Florida";
+            string expectedCurrentAddress = "test current address";
+            string expectedPermanentAddress = "test permanent address";
 
             IWebElement inputFullName = driver.FindElement(By.XPath("//*[@id='userName']"));
             IWebElement inputEmail = driver.FindElement(By.XPath("//*[@id='userEmail']"));
@@ -33,14 +32,19 @@ namespace SeleniumTestsWithoutPOM3
             inputEmail.SendKeys(expectedEmail);
             inputCurrentAddress.SendKeys(expectedCurrentAddress);
             inputPermanentAddress.SendKeys(expectedPermanentAddress);
-            
-            // driver.ExecuteJavaScript()
+
+            // Senas budas 
+            // IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
+            // jse.ExecuteScript("window.scrollBy(0, 200)");
+
+            // naujas budas pascrollint
+            driver.ExecuteJavaScript("window.scrollBy(0, 200)");
             buttonSubmit.Click();
 
-            IWebElement spanMessageName = driver.FindElement(By.XPath("//*[@id='name']"));
-            IWebElement spanMessageEmail = driver.FindElement(By.XPath("//*[@id='email']"));
-            IWebElement spanMessageCurrentAddress = driver.FindElement(By.XPath("//*[@id='currentAddress']"));
-            IWebElement spanMessagePermanentAddress = driver.FindElement(By.XPath("//*[@id='permanentAddress']"));
+            IWebElement spanMessageName = driver.FindElement(By.XPath("//*[@id='output']//*[@id='name']"));
+            IWebElement spanMessageEmail = driver.FindElement(By.XPath("//*[@id='output']//*[@id='email']"));
+            IWebElement spanMessageCurrentAddress = driver.FindElement(By.XPath("//*[@id='output']//*[@id='currentAddress']"));
+            IWebElement spanMessagePermanentAddress = driver.FindElement(By.XPath("//*[@id='output']//*[@id='permanentAddress']"));
 
             string actualName = spanMessageName.Text;
             string actualEmail = spanMessageEmail.Text;
@@ -48,9 +52,9 @@ namespace SeleniumTestsWithoutPOM3
             string actualPermanentAddress = spanMessagePermanentAddress.Text;
 
             Assert.IsTrue(actualName.Contains(expectedFullName), $"actual: {actualName}, expected: {expectedFullName}");
-            Assert.AreEqual(expectedEmail, actualEmail);
-            Assert.AreEqual(expectedCurrentAddress, actualCurrentAddress);
-            Assert.AreEqual(expectedPermanentAddress, actualPermanentAddress);
+            Assert.IsTrue(actualEmail.Contains(expectedEmail), $"actual: {actualEmail}, expected: {expectedEmail}");
+            Assert.IsTrue(actualCurrentAddress.Contains(expectedCurrentAddress), $"actual: {actualCurrentAddress}, expected: {expectedCurrentAddress}");
+            Assert.IsTrue(actualPermanentAddress.Contains(expectedPermanentAddress), $"actual: {actualPermanentAddress}, expected: {expectedPermanentAddress}");
 
             driver.Quit();
         }
@@ -70,14 +74,26 @@ namespace SeleniumTestsWithoutPOM3
 
             string beforeValue = inputInvalidEmail.GetAttribute("class");
 
+            // Console.WriteLine(inputInvalidEmail.GetCssValue("border-color"));tik paziuret, kokia spalva
+
             inputInvalidEmail.SendKeys("montrimaite.ievagmail.com");
             buttonSubmit.Click();
 
+            System.Threading.Thread.Sleep(1000); //kreipiasi i sistema ir uzmigdo
+
+            // Console.WriteLine(inputInvalidEmail.GetCssValue("border-color")); tik paziuret, kokia spalva
+
             string afterValue = inputInvalidEmail.GetAttribute("class");
 
-            Assert.AreEqual(beforeValue, afterValue);
+            // patikriname realia border spalva
+            Assert.AreEqual("rgb(255, 0, 0)", inputInvalidEmail.GetCssValue("border-color"));
+
+            // patikriname, kad buvo uzdeta papildoma klase input elementui
+            Assert.AreNotEqual(beforeValue, afterValue);
 
             driver.Quit();
+
+            // $x() - galime ivesti xpath web consolej ir rasti elementa
         }      
     }
  }
