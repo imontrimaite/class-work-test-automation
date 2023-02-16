@@ -1,7 +1,6 @@
 ﻿
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.Extensions;
 
 namespace SeleniumFramework
 {
@@ -25,20 +24,6 @@ namespace SeleniumFramework
         public static void QuitDriver()
         {
             driver.Quit();
-        }
-
-        //paklaust
-        public static void MaximizeWindow()
-        {
-            driver.Manage().Window.Maximize();
-        }
-        public static void WindowPosition()
-        {
-            driver.Manage().Window.Position = new System.Drawing.Point(2000, 1);
-        }
-        public static void ScrollWindow(string jsCommand)
-        {
-            driver.ExecuteJavaScript(jsCommand);
         }
     }
 }

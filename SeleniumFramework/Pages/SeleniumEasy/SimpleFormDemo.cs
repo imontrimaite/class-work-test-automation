@@ -56,5 +56,18 @@ namespace SeleniumFramework.Pages.SeleniumEasy
             string locator = "//*[@id='displayvalue']";
             return Common.GetElementText(locator);
         }
+
+        public static void MaximizeWindow()
+        {
+            Common.MaximizeWindow();
+        }
+        public static void WindowPosition()
+        {
+            Common.WindowPosition();
+        }
+        public static void ScrollWindow(string jsCommand)
+        {
+            Common.ScrollWindow(jsCommand);
+        }
     }
 }
