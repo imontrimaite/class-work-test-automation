@@ -6,12 +6,16 @@ namespace SeleniumTests.SeleniumEasy
 {
     internal class SimpleFormDemoTests
     {
+        [SetUp]
+        public void Setup()
+        {
+            Driver.InitializeDriver();
+            SimpleFormDemo.Open();
+        }
+
         [Test]
         public void SingleInputField()
         {
-            Driver.InitializeDriver();
-            Driver.OpenURL("https://demo.seleniumeasy.com/basic-first-form-demo.html");
-
             string expectedResult = "Labas";
 
             SimpleFormDemo.EnterMessage(expectedResult);
@@ -24,16 +28,11 @@ namespace SeleniumTests.SeleniumEasy
            // string actualResult = spanMessageText.Text;
 
             Assert.AreEqual(expectedResult, actualResult);
-
-            Driver.QuitDriver();
         }
 
         [Test]
         public void TwoInputFields()
         {
-            Driver.InitializeDriver();
-            Driver.OpenURL("https://demo.seleniumeasy.com/basic-first-form-demo.html");
-
             string inputA = "5";
             string inputB = "7";
             string expectedResult = "12";
@@ -44,7 +43,11 @@ namespace SeleniumTests.SeleniumEasy
             string actualResult = SimpleFormDemo.GetTwoInputFieldMessage();
 
             Assert.AreEqual(expectedResult, actualResult);
+        }
 
+        [TearDown]
+        public void TearDown()
+        {
             Driver.QuitDriver();
         }
     }

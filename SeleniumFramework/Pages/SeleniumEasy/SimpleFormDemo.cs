@@ -6,6 +6,10 @@ namespace SeleniumFramework.Pages.SeleniumEasy
     // cia yra Page Object Model, jis neturi buti priklausomas nuo seleniumas
     public class SimpleFormDemo
     {
+        public static void Open()
+        {
+            Driver.OpenURL("https://demo.seleniumeasy.com/basic-first-form-demo.html");
+        }
         public static void EnterMessage(string message)
         {
             string locator = "//*[@id='user-message']";
@@ -37,7 +41,7 @@ namespace SeleniumFramework.Pages.SeleniumEasy
 
         public static void EnterInputB(string value)
         {
-            string locator = "//*[@id='sum1']";
+            string locator = "//*[@id='sum2']";
             Common.SendKeys(locator, value);
         }
 
