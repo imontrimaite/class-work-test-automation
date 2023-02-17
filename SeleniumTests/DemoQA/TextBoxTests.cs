@@ -30,9 +30,10 @@ namespace SeleniumTests.DemoQA
             TextBoxPage.InputEmail(expectedEmail);
             TextBoxPage.InputCurrentAddress(expectedCurrentAddress);
             TextBoxPage.InputPermanentAddress(expectedPermanentAddress);
-            TextBoxPage.ClickSubmitButton();
+            
+            TextBoxPage.ScrollWindow("window.scrollBy(0, 200)"); // keliauja i submit button
 
-            TextBoxPage.ScrollWindow("window.scrollBy(0, 200)");
+            TextBoxPage.ClickSubmitButton();
 
             string actualName = TextBoxPage.GetNameMessage();
             string actualEmail = TextBoxPage.GetEmailMessage();
@@ -45,7 +46,7 @@ namespace SeleniumTests.DemoQA
             Assert.IsTrue(actualPermanentAddress.Contains(expectedPermanentAddress), $"actual: {actualPermanentAddress}, expected: {expectedPermanentAddress}");
         }
 
-        [Test]
+        [Test] // pakoreguot pagal irasa
         public void InvalidEmailTest()
         {
             string beforeValue = TextBoxPage.GetAttribute("class");
