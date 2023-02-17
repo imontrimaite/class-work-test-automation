@@ -53,6 +53,7 @@
     <Compile Include="Driver.cs" />
     <Compile Include="Pages\Common.cs" />
     <Compile Include="Pages\DemoQA\TextBoxPage.cs" />
+    <Compile Include="Pages\SeleniumEasy\CheckboxDemoPage.cs" />
     <Compile Include="Pages\SeleniumEasy\SimpleFormDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
