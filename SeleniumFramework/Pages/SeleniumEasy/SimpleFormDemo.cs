@@ -65,9 +65,5 @@ namespace SeleniumFramework.Pages.SeleniumEasy
         {
             Common.WindowPosition();
         }
-        public static void ScrollWindow(string jsCommand)
-        {
-            Common.ScrollWindow(jsCommand);
-        }
     }
 }

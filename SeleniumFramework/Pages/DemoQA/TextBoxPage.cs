@@ -7,6 +7,8 @@ namespace SeleniumFramework.Pages.DemoQA
     {
         public static void Open()
         {
+            Common.WindowPosition();
+            Common.MaximizeWindow();
             Driver.OpenURL("https://demoqa.com/text-box");
         }
         public static void MaximizeWindow()
@@ -17,73 +19,75 @@ namespace SeleniumFramework.Pages.DemoQA
         {
             Common.WindowPosition();
         }
-        public static void ScrollWindow(string jsCommand)
+        public static void InputFullName(string fullNameValue)
         {
-            Common.ScrollWindow(jsCommand);
+            Common.SendKeys(Locators.TextBoxPage.inputFullName, fullNameValue);
+        }
+        public static void InputEmail(string emailValue)
+        {
+            Common.SendKeys(Locators.TextBoxPage.inputEmail, emailValue);
         }
 
-        public static void InputFullName(string fullName)
+        public static void InputCurrentAddress(string currentAddressValue)
         {
-            string locator = "//*[@id='userName']";
-            Common.SendKeys(locator, fullName);
-        }
-        public static void InputEmail(string email)
-        {
-            string locator = "//*[@id='userEmail']";
-            Common.SendKeys(locator, email);
+            Common.SendKeys(Locators.TextBoxPage.inputCurrentAddress, currentAddressValue);
         }
 
-        public static void InputCurrentAddress(string currentAddress)
+        public static void InputPermanentAddress(string permanentAddressValue)
         {
-            string locator = "//*[@id='currentAddress']";
-            Common.SendKeys(locator, currentAddress);
-        }
-
-        public static void InputPermanentAddress(string permanentAddress)
-        {
-            string locator = "//*[@id='permanentAddress']";
-            Common.SendKeys(locator, permanentAddress);
+            Common.SendKeys(Locators.TextBoxPage.inputPermanentAddress, permanentAddressValue);
         }
 
         public static void ClickSubmitButton()
         {
-            string locator = "//*[@id='submit']";
-            Common.ClickElement(locator);
+            Common.ScrollBy(0, 100); // kad nereiktu atsimint sitos sintakses: "window.scrollBy(0, 200)"
+            Common.ClickElement(Locators.TextBoxPage.buttonSubmit);
         }
 
         public static string GetNameMessage()
         {
-            string locator = "//*[@id='output']//*[@id='name']";
-            return Common.GetElementText(locator);
+            return Common.GetElementText(Locators.TextBoxPage.outputFullName);
         }
 
         public static string GetEmailMessage()
         {
-            string locator = "//*[@id='output']//*[@id='email']";
-            return Common.GetElementText(locator);
+            return Common.GetElementText(Locators.TextBoxPage.outputEmail);
         }
 
         public static string GetCurrentAddressMessage()
         {
-            string locator = "//*[@id='output']//*[@id='currentAddress']";
-            return Common.GetElementText(locator);
+            return Common.GetElementText(Locators.TextBoxPage.outputCurrentAddress);
         }
 
         public static string GetPermanentAddressMessage()
         {
-            string locator = "//*[@id='output']//*[@id='permanentAddress']";
-            return Common.GetElementText(locator);
+            return Common.GetElementText(Locators.TextBoxPage.outputPermanentAddress);
         }
 
-        public static string GetAttribute(string className)
+        public static bool CheckIfemailBorderIsRed()
         {
-            string locator = "//*[@id='userEmail']";
-            return Common.GetAttribute(locator, className);
+            Common.WaitMilliSeconds(500);
+            string cssBorderColor = Common.GetCssAttributeValue(Locators.TextBoxPage.inputEmail, "border-color");
+            if (cssBorderColor == "rgb(255, 0, 0)")
+            {
+                return true;
+            }
+            else 
+            { 
+                return false;
+            }
         }
-        public static string GetCssValue(string cssValue)
+        public static bool CheckIfEmailErrorIsDisplayed()
         {
-            string locator = "//*[@id='userEmail']";
-            return Common.GetCssValue(locator, cssValue);
+            string attributeClassValue = Common.GetAttributeValue(Locators.TextBoxPage.inputEmail, "class");
+            if (attributeClassValue.Contains("field-error"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

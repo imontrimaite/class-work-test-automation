@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
+using System;
 
 namespace SeleniumFramework.Pages
 {
@@ -32,17 +33,28 @@ namespace SeleniumFramework.Pages
         {
             Driver.GetDriver().Manage().Window.Position = new System.Drawing.Point(2000, 1);
         }
-        internal static void ScrollWindow(string jsCommand)
+        private static void ExecuteJavaScript(string script)
         {
-            Driver.GetDriver().ExecuteJavaScript(jsCommand);
+            Driver.GetDriver().ExecuteJavaScript(script);
         }
-        internal static string GetAttribute(string locator, string className)
+        internal static void ScrollBy(int pixelsRight, int pixelsDown)
         {
-            return GetElement(locator).GetAttribute(className);
+            ExecuteJavaScript($"window.scrollBy({pixelsRight}, {pixelsDown})");
         }
-        internal static string GetCssValue(string locator, string cssValue)
+
+        internal static void WaitMilliSeconds(int milliseconds)
         {
-            return GetElement(locator).GetCssValue(cssValue);
+            System.Threading.Thread.Sleep(milliseconds);
+        }
+
+        internal static string GetCssAttributeValue(string locator, string propertyName)
+        {
+            return GetElement(locator).GetCssValue(propertyName);
+        }
+
+        internal static string GetAttributeValue(string locator, string attributeName)
+        {
+            return GetElement(locator).GetAttribute(attributeName);
         }
     }
 }

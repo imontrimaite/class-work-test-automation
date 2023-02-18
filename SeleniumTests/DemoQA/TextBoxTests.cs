@@ -12,10 +12,7 @@ namespace SeleniumTests.DemoQA
         public void Setup()
         {
             Driver.InitializeDriver();
-            TextBoxPage.WindowPosition();
-            TextBoxPage.MaximizeWindow();
             TextBoxPage.Open();
-            Driver.OpenURL("https://demoqa.com/text-box");
         }
 
         [Test]
@@ -29,10 +26,7 @@ namespace SeleniumTests.DemoQA
             TextBoxPage.InputFullName(expectedFullName);
             TextBoxPage.InputEmail(expectedEmail);
             TextBoxPage.InputCurrentAddress(expectedCurrentAddress);
-            TextBoxPage.InputPermanentAddress(expectedPermanentAddress);
-            
-            TextBoxPage.ScrollWindow("window.scrollBy(0, 200)"); // keliauja i submit button
-
+            TextBoxPage.InputPermanentAddress(expectedPermanentAddress);            
             TextBoxPage.ClickSubmitButton();
 
             string actualName = TextBoxPage.GetNameMessage();
@@ -46,24 +40,16 @@ namespace SeleniumTests.DemoQA
             Assert.IsTrue(actualPermanentAddress.Contains(expectedPermanentAddress), $"actual: {actualPermanentAddress}, expected: {expectedPermanentAddress}");
         }
 
-        [Test] // pakoreguot pagal irasa
+        [Test]
         public void InvalidEmailTest()
         {
-            string beforeValue = TextBoxPage.GetAttribute("class");
+            string valueInputEmail = "montrimaite.ievagmail.com";
 
-            // Console.WriteLine(TextBoxPage.GetCssValue("border-color"));//tik paziuret, kokia spalva
-
-            TextBoxPage.InputEmail("montrimaite.ievagmail.com");
+            TextBoxPage.InputEmail(valueInputEmail);
             TextBoxPage.ClickSubmitButton();
 
-            System.Threading.Thread.Sleep(1000); // kur ir kaip sita deti?
-
-            // Console.WriteLine(TextBoxPage.GetCssValue("border-color")); //tik paziuret, kokia spalva
-
-            string afterValue = TextBoxPage.GetAttribute("class");
-
-            Assert.AreEqual("rgb(255, 0, 0)", TextBoxPage.GetCssValue("border-color"));
-            Assert.AreNotEqual(beforeValue, afterValue);
+            Assert.IsTrue(TextBoxPage.CheckIfEmailErrorIsDisplayed());
+            Assert.IsTrue(TextBoxPage.CheckIfemailBorderIsRed());
         }
 
         [TearDown]
