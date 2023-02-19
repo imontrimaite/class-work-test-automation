@@ -7,7 +7,9 @@ namespace SeleniumFramework.Pages.DemoQA
     {
         private static string inputSingleCheckbox = "//*[@id='isAgeSelected']";
         private static string fieldSingleCheckboxSuccessMessage = "//*[@id='txtAge']";
-
+        private static string inputMultipleCheckboxes = "//*[@class='cb1-element']";
+        private static string buttonMultipleCheckboxes = "//*[@id='check1']";
+        
         public static void Open()
         {
             Common.WindowPosition();
@@ -23,6 +25,16 @@ namespace SeleniumFramework.Pages.DemoQA
         public static string GetSingleCheckboxSuccessMessage()
         {
             return Common.GetElementText(fieldSingleCheckboxSuccessMessage);
+        }
+
+        public static void ClickEachofMultipleCheckboxes()
+        {
+            Common.ClickElements(inputMultipleCheckboxes);
+        }
+
+        public static string GetMultipleCheckboxButtonText()
+        {
+            return Common.GetAttributeValue(buttonMultipleCheckboxes, "value"); //tekstas pasislepes attribute value
         }
     }
 }

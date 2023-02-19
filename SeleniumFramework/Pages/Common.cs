@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SeleniumFramework.Pages
 {
@@ -10,6 +12,20 @@ namespace SeleniumFramework.Pages
         {
             return Driver.GetDriver().FindElement(By.XPath(locator));
         }
+        private static List<IWebElement> GetElements(string locator)
+        {
+            return Driver.GetDriver().FindElements(By.XPath(locator)).ToList();
+        }
+        internal static void ClickElements(string locator)
+        {
+            List<IWebElement> elements = GetElements(locator);
+
+            foreach (IWebElement element in elements)
+            { 
+                element.Click();
+            }
+        }
+
         internal static void SendKeys(string locator, string message)
         {
             GetElement(locator).SendKeys(message);
@@ -33,6 +49,7 @@ namespace SeleniumFramework.Pages
         {
             Driver.GetDriver().Manage().Window.Position = new System.Drawing.Point(2000, 1);
         }
+
         private static void ExecuteJavaScript(string script)
         {
             Driver.GetDriver().ExecuteJavaScript(script);
