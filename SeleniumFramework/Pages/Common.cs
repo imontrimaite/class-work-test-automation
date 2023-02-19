@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,8 @@ namespace SeleniumFramework.Pages
         {
             return Driver.GetDriver().FindElements(By.XPath(locator)).ToList();
         }
+
+
         internal static void ClickElements(string locator)
         {
             List<IWebElement> elements = GetElements(locator);
@@ -72,6 +76,16 @@ namespace SeleniumFramework.Pages
         internal static string GetAttributeValue(string locator, string attributeName)
         {
             return GetElement(locator).GetAttribute(attributeName);
+        }
+
+        internal static void WaitForElementToBeClickable(string locator)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(locator)));
+        }
+        internal static bool CheckIfElementIsEnabled(string locator)
+        {
+            return GetElement(locator).Enabled;
         }
     }
 }
