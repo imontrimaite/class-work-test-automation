@@ -19,7 +19,6 @@ namespace SeleniumFramework.Pages
             return Driver.GetDriver().FindElements(By.XPath(locator)).ToList();
         }
 
-
         internal static void ClickElements(string locator)
         {
             List<IWebElement> elements = GetElements(locator);
