@@ -18,5 +18,23 @@ namespace SeleniumFramework.Pages.DemoQA
             Common.WaitForElementToBeClickable(locator);
             return Common.CheckIfElementIsEnabled(locator);
         }
+
+        public static void WaitForButtonClassToChange()
+        {
+            string locator = "//*[@id='colorChange']";
+            Common.WaitForElementAttributeToContainValue(locator, "class", "text-danger");
+        }
+
+        public static void WaitForButtonTextToBeRed()
+        {
+            string locator = "//*[@id='colorChange']";
+            Common.WaitForElementCssPropertyToBe(locator, "text-color", "rgb(255, 0, 0)");
+        }
+
+        public static void WaitForButtonTextToBeVisible()
+        {
+            string locator = "//*[@id='visibleAfter']";
+            Common.WaitForElementToBeVisible(locator);
+        }
     }
 }

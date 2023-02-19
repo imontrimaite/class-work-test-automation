@@ -13,10 +13,29 @@ namespace SeleniumTests.DemoQA
             Driver.InitializeDriver();
             DynamicPropertiesPage.Open();
         }
+
         [Test]
         public void WaitForButtonToBeClickable()
         {
             Assert.IsTrue(DynamicPropertiesPage.WaitForButtonToBeClickable());
+        }
+
+        [Test]
+        public void WaitForButtonClassToChange()
+        {
+            DynamicPropertiesPage.WaitForButtonClassToChange();
+        }
+
+        [Test]//paklaust
+        public void WaitForButtonTextToBeRed()
+        {
+            DynamicPropertiesPage.WaitForButtonTextToBeRed();
+        }
+
+        [Test]
+        public void WaitForButtonTextToBeVisible()
+        {
+            DynamicPropertiesPage.WaitForButtonTextToBeVisible();
         }
 
         [TearDown]

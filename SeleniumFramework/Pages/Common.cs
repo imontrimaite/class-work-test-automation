@@ -83,6 +83,23 @@ namespace SeleniumFramework.Pages
             WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(locator)));
         }
+        internal static void WaitForElementAttributeToContainValue(string locator, string attributeName, string attributePartialValue)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(10));
+            wait.Until(d => d.FindElement(By.XPath(locator)).GetAttribute(attributeName).Contains(attributePartialValue));
+        }
+
+        internal static void WaitForElementCssPropertyToBe(string locator, string cssPropertyName, string cssPropertyValue)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(10));
+            wait.Until(d => d.FindElement(By.XPath(locator)).GetCssValue(cssPropertyName).Equals(cssPropertyValue));
+        }
+        internal static void WaitForElementToBeVisible(string locator)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(10));
+            // wait.PollingInterval = TimeSpan.FromSeconds(4); // Fluent wait, tikrina intervalais kas 4 sekundes, kol elementas nepasidaro visible
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(locator)));
+        }
         internal static bool CheckIfElementIsEnabled(string locator)
         {
             return GetElement(locator).Enabled;
