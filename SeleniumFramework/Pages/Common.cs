@@ -103,5 +103,25 @@ namespace SeleniumFramework.Pages
         {
             return GetElement(locator).Enabled;
         }
+
+        internal static bool CheckIfOption1IsSelected(string locator)
+        {
+            return GetElement(locator).Selected;
+        }
+
+        internal static bool CheckIfOption2IsSelected(string locator)
+        {
+            return GetElement(locator).Selected;
+        }
+
+        internal static bool CheckIfOption3IsSelected(string locator)
+        {
+            return GetElement(locator).Selected;
+        }
+
+        internal static bool CheckIfOption4IsSelected(string locator)
+        {
+            return GetElement(locator).Selected;
+        }
     }
 }
