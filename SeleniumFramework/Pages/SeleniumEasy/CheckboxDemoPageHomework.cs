@@ -36,10 +36,17 @@ namespace SeleniumFramework.Pages.SeleniumEasy
             return Common.CheckIfOption3IsSelected(locator);
         }
 
+
         public static bool GetCheckedOption4Status()
         {
             string locator = "(//*[@class='cb1-element'])[4]";
             return Common.CheckIfOption4IsSelected(locator);
+        }
+
+        public static bool GetCheckedBoxesStatusList()
+        {
+            string locator = "//*[@class='cb1-element']";
+            return Common.CheckIfAllOptionsAreSelected(locator);
         }
     }
 }

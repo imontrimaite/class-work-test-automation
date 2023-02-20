@@ -10,6 +10,8 @@ namespace SeleniumFramework.Pages
 {
     internal class Common
     {
+        private static IEnumerable<IWebElement> elements;
+
         private static IWebElement GetElement(string locator)
         {
             return Driver.GetDriver().FindElement(By.XPath(locator));
@@ -48,6 +50,7 @@ namespace SeleniumFramework.Pages
         {
             Driver.GetDriver().Manage().Window.Maximize();
         }
+
         internal static void WindowPosition()
         {
             Driver.GetDriver().Manage().Window.Position = new System.Drawing.Point(2000, 1);
@@ -123,5 +126,11 @@ namespace SeleniumFramework.Pages
         {
             return GetElement(locator).Selected;
         }
+
+        internal static bool CheckIfAllOptionsAreSelected(string locator)
+        {
+            return GetElements(locator).Select(e => e.Selected).Any();
+        }
+
     }
 }
