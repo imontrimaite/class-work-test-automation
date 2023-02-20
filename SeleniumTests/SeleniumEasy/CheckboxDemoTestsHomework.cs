@@ -31,7 +31,7 @@ namespace SeleniumTests.SeleniumEasy
         {
             CheckboxDemoPageHomework.clickCkeckAllButton();
 
-            Assert.IsTrue(CheckboxDemoPageHomework.GetCheckedBoxesStatusList());
+            Assert.IsTrue(CheckboxDemoPageHomework.CheckIfAllCheckboxesAreSelected());
         }
 
         [TearDown]
