@@ -34,22 +34,26 @@ namespace SeleniumTests.SeleniumEasy
             Assert.IsTrue(CheckboxDemoPageHomework.CheckIfAllCheckboxesAreSelected());
         }
 
-        [Test]// nepavykes
+        [Test]
         public void CheckAllButtonTextChange()
         {
             string expectedAttribute = "Uncheck All";
             string actualResult = CheckboxDemoPageHomework.GetNewCheckAllButtonAttributeValue();
 
             CheckboxDemoPageHomework.ClickOption1();
+            actualResult = CheckboxDemoPageHomework.GetNewCheckAllButtonAttributeValue();
             Assert.AreNotEqual(expectedAttribute, actualResult);
 
             CheckboxDemoPageHomework.ClickOption2();
+            actualResult = CheckboxDemoPageHomework.GetNewCheckAllButtonAttributeValue();
             Assert.AreNotEqual(expectedAttribute, actualResult);
 
             CheckboxDemoPageHomework.ClickOption3();
+            actualResult = CheckboxDemoPageHomework.GetNewCheckAllButtonAttributeValue();
             Assert.AreNotEqual(expectedAttribute, actualResult);
 
             CheckboxDemoPageHomework.ClickOption4();
+            actualResult = CheckboxDemoPageHomework.GetNewCheckAllButtonAttributeValue();
             Assert.AreEqual(expectedAttribute, actualResult);
         }
 
