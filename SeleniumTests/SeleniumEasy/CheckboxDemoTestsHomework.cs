@@ -25,13 +25,7 @@ namespace SeleniumTests.SeleniumEasy
             Assert.IsTrue(CheckboxDemoPageHomework.GetCheckedOption3Status());
             Assert.IsTrue(CheckboxDemoPageHomework.GetCheckedOption4Status());
         }
-
-        [Test]
-        public void MultipleCheckboxesStatusList()
-        { 
-            
-        }
-       
+     
         [TearDown]
         public void TearDown()
         {
