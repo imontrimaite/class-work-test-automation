@@ -132,5 +132,11 @@ namespace SeleniumFramework.Pages
             return GetElements(locator).Select(e => e.Selected).Any();
         }
 
+        internal static void WaitForImageToAppear(string locator)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath(locator)));
+        }
+
     }
 }
