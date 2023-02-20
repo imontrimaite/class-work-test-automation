@@ -56,7 +56,7 @@ namespace SeleniumTests.SeleniumEasy
         [TearDown]
         public void TearDown()
         {
-            Driver.QuitDriver();
+           Driver.QuitDriver();
         }
     }
 }
