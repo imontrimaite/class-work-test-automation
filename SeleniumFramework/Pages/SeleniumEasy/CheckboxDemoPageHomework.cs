@@ -48,5 +48,36 @@ namespace SeleniumFramework.Pages.SeleniumEasy
             string locator = "//*[@class='cb1-element']";
             return Common.CheckIfAllOptionsAreSelected(locator);
         }
+
+        public static void ClickOption1()
+        {
+            string locator = "//*[@class='cb1-element']";
+            Common.ClickElement(locator);
+        }
+
+        public static void ClickOption2()
+        {
+            string locator = "(//*[@class='cb1-element'])[2]";
+            Common.ClickElement(locator);
+        }
+
+        public static void ClickOption3()
+        {
+            string locator = "(//*[@class='cb1-element'])[3]";
+            Common.ClickElement(locator);
+        }
+
+        public static void ClickOption4()
+        {
+            string locator = "(//*[@class='cb1-element'])[4]";
+            Common.ClickElement(locator);
+        }
+
+        public static string GetNewCheckAllButtonAttributeValue()
+        {
+            string locator = "//*[@id='check1']";
+            return Common.GetAttributeValue(locator, "value");
+        }
+
     }
 }
