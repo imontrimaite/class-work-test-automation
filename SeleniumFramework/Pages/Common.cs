@@ -129,7 +129,20 @@ namespace SeleniumFramework.Pages
 
         internal static bool CheckIfAllOptionsAreSelected(string locator)
         {
-            return GetElements(locator).Select(e => e.Selected).Any();
+            List<IWebElement> elements = GetElements(locator);
+            bool anySelected = false;
+
+            foreach (IWebElement element in elements)
+            {
+                if (element.Selected)
+                {
+                    anySelected = true;
+                    break;
+                }
+            }
+            return anySelected;
+
+            //arba: return GetElements(locator).Select(e => e.Selected).Any();
         }
 
         internal static void WaitForImageToAppear(string locator)
