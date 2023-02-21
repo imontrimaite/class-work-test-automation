@@ -26,7 +26,7 @@ namespace SeleniumTests.SeleniumEasy
             Assert.IsTrue(CheckboxDemoPageHomework.GetCheckedOption4Status());
         }
 
-        [Test] //??
+        [Test]
         public void MultipleCheckboxesStatusList()
         {
             CheckboxDemoPageHomework.clickCkeckAllButton();
