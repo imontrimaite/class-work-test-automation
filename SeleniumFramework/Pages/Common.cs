@@ -137,7 +137,7 @@ namespace SeleniumFramework.Pages
                 if (element.Selected)
                 {
                     anySelected = true;
-                    break;
+                    //break; nereikalingas
                 }
             }
             return anySelected;
