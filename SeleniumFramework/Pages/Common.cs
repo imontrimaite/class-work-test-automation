@@ -10,6 +10,8 @@ namespace SeleniumFramework.Pages
 {
     internal class Common
     {
+        private static IEnumerable<IWebElement> elements;
+
         private static IWebElement GetElement(string locator)
         {
             return Driver.GetDriver().FindElement(By.XPath(locator));
@@ -48,6 +50,19 @@ namespace SeleniumFramework.Pages
         {
             Driver.GetDriver().Manage().Window.Maximize();
         }
+
+        internal static List<bool> GetMultipleElementSelectedStatus(string locator)
+        {
+            List<IWebElement> elements = GetElements(locator);
+            List<bool> statuses = new List<bool>();
+
+            foreach (IWebElement element in elements)
+            {
+                statuses.Add(element.Selected);
+            }
+            return statuses;
+        }
+
         internal static void WindowPosition()
         {
             Driver.GetDriver().Manage().Window.Position = new System.Drawing.Point(2000, 1);
@@ -103,5 +118,34 @@ namespace SeleniumFramework.Pages
         {
             return GetElement(locator).Enabled;
         }
+
+        internal static bool CheckIfElementIsSelected(string locator)
+        {
+            return GetElement(locator).Selected;
+        }
+
+        internal static bool CheckIfAllOptionsAreSelected(string locator)
+        {
+            List<IWebElement> elements = GetElements(locator);
+            bool anySelected = false;
+
+            foreach (IWebElement element in elements)
+            {
+                if (element.Selected)
+                {
+                    anySelected = true;
+                }
+            }
+            return anySelected;
+
+            //arba: return GetElements(locator).Select(e => e.Selected).Any();
+        }
+
+        internal static void WaitForElementToNotContainText(string locator, string textToNotBePresent)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(10));
+            wait.Until(d => !d.FindElement(By.XPath(locator)).Text.Contains(textToNotBePresent));
+        }
+
     }
 }
