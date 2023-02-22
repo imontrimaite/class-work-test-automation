@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using SeleniumFramework;
 using SeleniumFramework.Pages.SeleniumEasy;
+using System.Collections.Generic;
 
 namespace SeleniumTests.SeleniumEasy
 {
@@ -32,6 +33,19 @@ namespace SeleniumTests.SeleniumEasy
             CheckboxDemoPageHomework.clickCkeckAllButton();
 
             Assert.IsTrue(CheckboxDemoPageHomework.CheckIfAllCheckboxesAreSelected());
+        }
+
+        //arba
+
+        [Test]
+        public void MultipleCheckboxesStatusCheck()
+        {
+            List<bool> statuses = CheckboxDemoPageHomework.GetStatusOfAllCheckboxes();
+
+            foreach (bool status in statuses)
+            { 
+                Assert.IsFalse(status);
+            }
         }
 
         [Test]

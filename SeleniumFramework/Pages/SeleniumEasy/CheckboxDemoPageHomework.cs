@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace SeleniumFramework.Pages.SeleniumEasy
 {
@@ -21,26 +22,31 @@ namespace SeleniumFramework.Pages.SeleniumEasy
         public static bool GetCheckedOption1Status()
         {
             string locator = "//*[@class='cb1-element']";
-            return Common.CheckIfOption1IsSelected(locator);
+            return Common.CheckIfElementIsSelected(locator);
         }
 
         public static bool GetCheckedOption2Status()
         {
             string locator = "(//*[@class='cb1-element'])[2]";
-            return Common.CheckIfOption2IsSelected(locator);
+            return Common.CheckIfElementIsSelected(locator);
         }
 
         public static bool GetCheckedOption3Status()
         {
             string locator = "(//*[@class='cb1-element'])[3]";
-            return Common.CheckIfOption3IsSelected(locator);
+            return Common.CheckIfElementIsSelected(locator);
         }
-
 
         public static bool GetCheckedOption4Status()
         {
             string locator = "(//*[@class='cb1-element'])[4]";
-            return Common.CheckIfOption4IsSelected(locator);
+            return Common.CheckIfElementIsSelected(locator);
+        }
+
+        public static List<bool> GetStatusOfAllCheckboxes()
+        {
+            string locator = "//*[@class='cb1-element']";
+            return Common.GetMultipleElementSelectedStatus(locator);
         }
 
         public static bool CheckIfAllCheckboxesAreSelected()

@@ -19,15 +19,10 @@ namespace SeleniumFramework.Pages.SeleniumEasy
             Common.ClickElement(locator);
         }
 
-        public static void WaitForImageToAppear()
-        {
-            string locator = "//*[@id='loading']/img";
-            Common.WaitForImageToAppear(locator);
-        }
-
         public static string GetPersonalInformation()
         {
             string locator = "//*[@id='loading']";
+            Common.WaitForElementToNotContainText(locator, "loading...");
             return Common.GetElementText(locator);
         }
     }

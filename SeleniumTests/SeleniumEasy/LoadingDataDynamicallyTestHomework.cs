@@ -13,11 +13,10 @@ namespace SeleniumTests.SeleniumEasy
             LoadingDataDynamicallyPageHomework.Open();
         }
 
-        [Test] //nepavykes
+        [Test]
         public void LoadingDataDynamicallyTest()
         {
             LoadingDataDynamicallyPageHomework.ClickGetNewUserButton();
-            LoadingDataDynamicallyPageHomework.WaitForImageToAppear();
 
             string personalInformation = LoadingDataDynamicallyPageHomework.GetPersonalInformation();
 
