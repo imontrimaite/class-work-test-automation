@@ -18,6 +18,7 @@ namespace SeleniumFramework.Pages
             return Driver.GetDriver().FindElement(By.XPath(locator));
         }
 
+
         private static List<IWebElement> GetElements(string locator)
         {
             return Driver.GetDriver().FindElements(By.XPath(locator)).ToList();
@@ -200,6 +201,11 @@ namespace SeleniumFramework.Pages
         {
             SelectElement selectElement = GetSelectElement(locator);
             selectElement.SelectByText(text);
+        }
+
+        internal static string GetAlertText()
+        {
+            return Driver.GetDriver().SwitchTo().Alert().Text;
         }
     }
 }
