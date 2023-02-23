@@ -59,6 +59,7 @@
     <Compile Include="Pages\DemoQA\CheckboxDemoPage.cs" />
     <Compile Include="Pages\DemoQA\DynamicPropertiesPage.cs" />
     <Compile Include="Pages\DemoQA\Locators.cs" />
+    <Compile Include="Pages\DemoQA\SelectMenuPage.cs" />
     <Compile Include="Pages\DemoQA\TextBoxPage.cs" />
     <Compile Include="Pages\DemoQA\TooltipsPage.cs" />
     <Compile Include="Pages\SeleniumEasy\CheckboxDemoPageHomework.cs" />
