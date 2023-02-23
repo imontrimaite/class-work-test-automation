@@ -17,6 +17,7 @@ namespace SeleniumFramework.Pages
         {
             return Driver.GetDriver().FindElement(By.XPath(locator));
         }
+
         private static List<IWebElement> GetElements(string locator)
         {
             return Driver.GetDriver().FindElements(By.XPath(locator)).ToList();
@@ -182,6 +183,23 @@ namespace SeleniumFramework.Pages
 
             actions.MoveToElement(element);
             actions.Perform();
+        }
+
+        private static SelectElement GetSelectElement(string locator) // papildomas metodas, jei yra daug metodu su select
+        { 
+            IWebElement element = GetElement(locator);
+            return new SelectElement(element);
+        }
+        internal static void SelectOptionByValue(string locator, string value)
+        {
+            SelectElement selectElement = GetSelectElement(locator);
+            selectElement.SelectByValue(value);
+        }
+
+        internal static void SelectOptionByText(string locator, string text)
+        {
+            SelectElement selectElement = GetSelectElement(locator);
+            selectElement.SelectByText(text);
         }
     }
 }
