@@ -15,7 +15,7 @@ namespace SeleniumTests.DemoQA
         [Test]
         public void DoubleClick()
         {
-            string expectedMessage = "You have done a double click";
+            string expectedMessage = "Yo have done a double click";
 
             ButtonsPage.DoubleClickButton();
             string actualMessage = ButtonsPage.GetDoubleClickMessage();
